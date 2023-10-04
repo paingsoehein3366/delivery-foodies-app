@@ -4,7 +4,11 @@ import { config } from "../comfig/comfig";
 
 const MenuApp = () => {
     const [data, setData] = useState([{ id: "", name: "", price: "" }]);
-    console.log("data", data);
+    console.log(data);
+
+    useEffect(() => {
+        dataFromMenus()
+    }, [0])
 
     const dataFromMenus = async () => {
         const MenusResultDataFrom = await fetch(`${config.apiBaseUrl}/menus`, {
@@ -15,14 +19,20 @@ const MenuApp = () => {
         });
         const MenusResult = await MenusResultDataFrom.json()
         setData(MenusResult);
-    }
+    };
+    const Image = "https://msquarefdc.sgp1.digitaloceanspaces.com/foodie-pos/msquare/1692767780575_vietnamesFood.webp";
     return (
         <Box>
             <Typography variant="h5">Menu rounder</Typography>
-            <Button variant="contained" onClick={dataFromMenus}>Click</Button>
+            <Button variant="contained" >Click</Button>
             {data.map((item) => {
                 return (
-                    <Typography key={item.id} variant="h6">{item.name}</Typography>
+                    <Box key={item.id}>
+                        <Card>
+                            <CardMedia image={Image} />
+                        </Card>
+                        <Typography variant="h6">{item.name}</Typography>
+                    </Box>
                 )
             })}
         </Box>

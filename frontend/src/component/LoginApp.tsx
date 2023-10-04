@@ -20,9 +20,6 @@ const LoginApp = () => {
             body: JSON.stringify(data),
         });
         if (response.ok) {
-            const responseData = await response.json();
-            const accessToken = responseData.accessToken;
-            localStorage.setItem("accessToken", accessToken);
             navigate("/")
         }
     }
