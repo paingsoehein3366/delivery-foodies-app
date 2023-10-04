@@ -8,9 +8,6 @@ const props = 5000;
 
 app.use(cors())
 app.use(json());
-app.get("/",(req,res) => {
-    res.send("Hello Word");
-}
 app.use("/", authRouter);
 app.use("/menus", menusRouter);
 
